@@ -9,7 +9,7 @@ const manualTagApiUrl = "https://88qk34ioua.execute-api.us-east-1.amazonaws.com/
 
 const cognitoDomain = "https://us-east-1qyxfw0qnc.auth.us-east-1.amazoncognito.com";  
 const clientId = "6ppd5q6cs5dpl2tih71272kgi5";  
-const logoutRedirectUrl = "https://krishnakanth-21.github.io/FIT5225_Frontend/upload.html";  // After logout redirect URL
+const logoutRedirectUrl = "https://us-east-1qyxfw0qnc.auth.us-east-1.amazoncognito.com/login?client_id=6ppd5q6cs5dpl2tih71272kgi5&response_type=code&scope=email+openid+phone+profile&redirect_uri=https://krishnakanth-21.github.io/FIT5225_Frontend/upload.html";  
 
 function logout() {
   console.log("Logging out...");
