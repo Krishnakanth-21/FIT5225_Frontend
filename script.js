@@ -5,6 +5,18 @@ const thumbnailApiUrl = "https://mfvniqw58g.execute-api.us-east-1.amazonaws.com/
 const deleteApiUrl = "https://qc68zfsvgd.execute-api.us-east-1.amazonaws.com/prod";  // Delete API
 const manualTagApiUrl = "https://88qk34ioua.execute-api.us-east-1.amazonaws.com/manual-tag-update";  // Manual Tagging API
 
+// ---- Cognito Logout URL ----
+
+const cognitoDomain = "https://us-east-1qyxfw0qnc.auth.us-east-1.amazoncognito.com";  
+const clientId = "6ppd5q6cs5dpl2tih71272kgi5";  
+const logoutRedirectUrl = "https://krishnakanth-21.github.io/FIT5225_Frontend/upload.html";  // After logout redirect URL
+
+function logout() {
+  console.log("Logging out...");
+  const logoutUrl = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutRedirectUrl)}`;
+  window.location.href = logoutUrl;
+}
+
 // ---- Update Accept Attribute ----
 function updateAcceptAttribute() {
   const fileInput = document.getElementById("fileInput");
