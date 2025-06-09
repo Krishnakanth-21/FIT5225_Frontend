@@ -10,18 +10,38 @@ const cognitoDomain = "https://us-east-1qyxfw0qnc.auth.us-east-1.amazoncognito.c
 const clientId = "6ppd5q6cs5dpl2tih71272kgi5";  
 
 // After logout, where Cognito will send user
-const logoutRedirectUrl = "https://krishnakanth-21.github.io/FIT5225_Frontend/"; // This must be allowed in Cognito Sign-out URLs
+const logoutRedirectUrl = "https://krishnakanth-21.github.io/FIT5225_Frontend/"; // Allowed Sign-out URL
 
-// Cognito login URL directly
+// Cognito login URL
 const loginUrl = `${cognitoDomain}/login?client_id=${clientId}&response_type=code&scope=email+openid+phone+profile&redirect_uri=${encodeURIComponent(logoutRedirectUrl)}`;
 
+// ---- Authentication Check ----
+(function checkAuth() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('code')) {
+    console.log('OAuth code found in URL, marking user as logged in.');
+    // Ideally, here you would exchange the code for tokens
+    localStorage.setItem('loggedIn', 'true');
+  }
+
+  const isLoggedIn = localStorage.getItem('loggedIn');
+
+  if (!isLoggedIn) {
+    console.log('No login session found. Redirecting to login.');
+    window.location.href = loginUrl;
+  }
+})();
+
+// ---- Logout Function ----
 function logout() {
+  localStorage.removeItem('loggedIn');  // Clear session
   const logoutUrl = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutRedirectUrl)}`;
   console.log("Redirecting to logout URL:", logoutUrl);
   window.location.href = logoutUrl;
 }
 
-// After logout, redirect user back to login page
+// ---- After logout, redirect back to login ----
 window.onload = function () {
   if (window.location.href === logoutRedirectUrl) {
     console.log("Redirecting to login page after logout...");
