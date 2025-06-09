@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <title>Upload, Search, Find, Delete & Tag Media</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Important for mobile -->
 </head>
 <body>
   <div class="container">
+    <button class="logout-button" onclick="logout()">Logout</button>
+
     <h1>Upload Media</h1>
 
     <label for="filetype">File Type:</label>
@@ -86,7 +89,6 @@
     </div>
 
     <div id="deleteStatus"></div>
-
   </div>
 
   <script src="script.js"></script>
