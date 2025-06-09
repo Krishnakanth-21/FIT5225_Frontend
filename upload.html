@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload, Search, Find, Delete & Tag Media</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Upload Media</h1>
+
+    <label for="filetype">File Type:</label>
+    <select id="filetype" onchange="updateAcceptAttribute()">
+      <option value="image">Image (JPG only)</option>
+      <option value="video">Video (MP4 only)</option>
+      <option value="audio">Audio (MP3, WAV)</option>
+    </select>
+
+    <label for="fileInput">Choose File:</label>
+    <input type="file" id="fileInput" />
+
+    <button onclick="upload()">Upload</button>
+    <div id="progressBar"><div id="progress"></div></div>
+    <p id="status"></p>
+
+    <hr>
+
+    <h1>Search Media</h1>
+
+    <div id="search-form">
+      <label for="speciesInput">Species (comma separated):</label>
+      <input type="text" id="speciesInput" placeholder="Crow,Owl">
+
+      <label for="countsInput">Counts (comma separated):</label>
+      <input type="text" id="countsInput" placeholder="5,2">
+
+      <button onclick="search()">Search</button>
+    </div>
+
+    <div id="results"></div>
+
+    <hr>
+
+    <h1>Find Full Image by Thumbnail</h1>
+
+    <div id="thumbnail-form">
+      <label for="thumbnailInput">Thumbnail URL:</label>
+      <input type="text" id="thumbnailInput" placeholder="Enter Thumbnail URL">
+
+      <button onclick="findFullImage()">Find Full Image</button>
+    </div>
+
+    <div id="thumbnailResults"></div>
+
+    <hr>
+
+    <h1>Manual Tagging Update</h1>
+
+    <div id="manual-tagging-form">
+      <label for="tagUrls">URLs (comma separated):</label>
+      <textarea id="tagUrls" rows="5" placeholder="Enter URLs..."></textarea>
+
+      <label for="tagsInput">Tags (format: species,count separated by comma):</label>
+      <input type="text" id="tagsInput" placeholder="Crow,1,Pigeon,2">
+
+      <label for="operation">Operation (1 for Add, 0 for Remove):</label>
+      <select id="operation">
+        <option value="1">Add</option>
+        <option value="0">Remove</option>
+      </select>
+
+      <button onclick="manualTagUpdate()">Update Tags</button>
+    </div>
+
+    <div id="taggingStatus"></div>
+
+    <hr>
+
+    <h1>Delete Files</h1>
+
+    <div id="delete-form">
+      <label for="deleteUrls">Enter URLs (comma separated):</label>
+      <textarea id="deleteUrls" rows="5" placeholder="Enter URLs to delete..."></textarea>
+
+      <button onclick="deleteFiles()">Delete Files</button>
+    </div>
+
+    <div id="deleteStatus"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
